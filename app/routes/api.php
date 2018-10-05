@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::post('register', 'UserController@register');
+Route::post('new', 'UserController@register');
 Route::post('login', 'UserController@authenticate');
 Route::get('me', 'ApiController@show');
 Route::put('me', 'ApiController@update');
