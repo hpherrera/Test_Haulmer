@@ -1,0 +1,99 @@
+#%RAML 1.0
+title: API REST Laravel
+version: 1.0
+baseUri: https://127.0.0.1:8000/api
+mediaType: application/json
+
+securitySchemes:
+  JWT:
+    description: Autentifica al usuario en las acciones a realizarr
+    type: JWT 
+    describedBy:
+      headers:
+        Authorization:
+          description: Bearer Token
+          type: string
+          required: true
+/new:
+  POST:
+    description: Registrar nuevo usuario
+    body:
+      application/json:
+        example: 
+          {"name": "Pepe", "email": "example@gmail.xl", "password": "123456"}
+    responses: 
+      201:
+        body:
+          application/json:
+            example: |
+              {
+                "Exito": El nuevo usuario se ha creado exitosamente,
+                "data": 
+                {
+                  "name": "Hector",
+                  "email": "Hector@example.cl",
+                }
+              }
+/login:
+  POST:
+    description: inicio de sesion
+    body:
+      application/json:
+        example: 
+          {"email": "example@gmail.xl", "password": "123456"}
+    responses: 
+      200:
+        body: 
+          application/json:
+            example:     
+              {
+                "token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1Mzg3MjM4OTMsImF1ZCI6IjNlMjc4NGU0YTM0MWY5YTE4YzQwNmQ0NDA1NzQ4ZTU0NGM4NjI4NjAiLCJkYXRhIjp7ImlkIjoiMiIsImVtYWlsIjoiZXhhbXBsZUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyeSQxMCRzQWFwZEdwb0N2M2F3OWRRS0JyOXouTlBDSGRBMXFHdE5QcExNLnlUTW5DZFY0TkUybk5lSyIsIm5hbWUiOiJIZWN0b3IgSGVycmVyYSJ9fQ.exEYFRcYFlHRApLujOcZto2aWxOIQ8IZyg0Tkg1pulk",
+                "message": "Sesion iniciada exitosamente",
+                
+              }
+
+/me:
+  GET:
+    description: El usuario que ha iniciado sesion puede ver sus datos
+    headers: 
+      Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1Mzg3MjMzMTIsImF1ZCI6IjNlMjc4NGU0YTM0MWY5YTE4YzQwNmQ0NDA1NzQ4ZTU0NGM4NjI4NjAiLCJkYXRhIjp7ImlkIjoiMiIsImVtYWlsIjoiZXhhbXBsZUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyeSQxMCRzQWFwZEdwb0N2M2F3OWRRS0JyOXouTlBDSGRBMXFHdE5QcExNLnlUTW5DZFY0TkUybk5lSyIsIm5hbWUiOiJQYXRvIn19.e2oTymnRXkeA__iBZdrcGgfUqwzCCHsatg5P0y6V_sg","description":"","type":"text","enabled":true}]eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1Mzg3MjM4OTMsImF1ZCI6IjNlMjc4NGU0YTM0MWY5YTE4YzQwNmQ0NDA1NzQ4ZTU0NGM4NjI4NjAiLCJkYXRhIjp7ImlkIjoiMiIsImVtYWlsIjoiZXhhbXBsZUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyeSQxMCRzQWFwZEdwb0N2M2F3OWRRS0JyOXouTlBDSGRBMXFHdE5QcExNLnlUTW5DZFY0TkUybk5lSyIsIm5hbWUiOiJIZWN0b3IgSGVycmVyYSJ9fQ.exEYFRcYFlHRApLujOcZto2aWxOIQ8IZyg0Tkg1pulk
+    responses: 
+      200:
+        body: 
+          application/json:
+            example:     
+              {
+                "id":"2",
+                "name":"Pato",
+                "email":"example@gmail.com",
+                "password":"$2y$10$sAapdGpoCv3aw9dQKBr9z.NPCHdA1qGtNPpLM.yTMnCdV4NE2nNeK",
+                "Token":"Token 2"
+              }
+  PUT:
+    description: EL usuario modifica sus datos cuando esta con sesion iniciada
+    headers: 
+      Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1Mzg3MjMzMTIsImF1ZCI6IjNlMjc4NGU0YTM0MWY5YTE4YzQwNmQ0NDA1NzQ4ZTU0NGM4NjI4NjAiLCJkYXRhIjp7ImlkIjoiMiIsImVtYWlsIjoiZXhhbXBsZUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyeSQxMCRzQWFwZEdwb0N2M2F3OWRRS0JyOXouTlBDSGRBMXFHdE5QcExNLnlUTW5DZFY0TkUybk5lSyIsIm5hbWUiOiJQYXRvIn19.e2oTymnRXkeA__iBZdrcGgfUqwzCCHsatg5P0y6V_sg","description":"","type":"text","enabled":true}]eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1Mzg3MjM4OTMsImF1ZCI6IjNlMjc4NGU0YTM0MWY5YTE4YzQwNmQ0NDA1NzQ4ZTU0NGM4NjI4NjAiLCJkYXRhIjp7ImlkIjoiMiIsImVtYWlsIjoiZXhhbXBsZUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyeSQxMCRzQWFwZEdwb0N2M2F3OWRRS0JyOXouTlBDSGRBMXFHdE5QcExNLnlUTW5DZFY0TkUybk5lSyIsIm5hbWUiOiJIZWN0b3IgSGVycmVyYSJ9fQ.exEYFRcYFlHRApLujOcZto2aWxOIQ8IZyg0Tkg1pulk
+    body:
+      application/json:
+        example: 
+          {"name": "Hector Herrera", "password": "1234567"}
+    responses: 
+      200:
+        body: 
+          application/json:
+            example:     
+              {
+                "Exito": "Datos modificados exitosamente"
+              }
+  DELETE:
+    description: El usuario elimina su cuenta
+    headers: 
+      Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1Mzg3MjMzMTIsImF1ZCI6IjNlMjc4NGU0YTM0MWY5YTE4YzQwNmQ0NDA1NzQ4ZTU0NGM4NjI4NjAiLCJkYXRhIjp7ImlkIjoiMiIsImVtYWlsIjoiZXhhbXBsZUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyeSQxMCRzQWFwZEdwb0N2M2F3OWRRS0JyOXouTlBDSGRBMXFHdE5QcExNLnlUTW5DZFY0TkUybk5lSyIsIm5hbWUiOiJQYXRvIn19.e2oTymnRXkeA__iBZdrcGgfUqwzCCHsatg5P0y6V_sg","description":"","type":"text","enabled":true}]eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1Mzg3MjM4OTMsImF1ZCI6IjNlMjc4NGU0YTM0MWY5YTE4YzQwNmQ0NDA1NzQ4ZTU0NGM4NjI4NjAiLCJkYXRhIjp7ImlkIjoiMiIsImVtYWlsIjoiZXhhbXBsZUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyeSQxMCRzQWFwZEdwb0N2M2F3OWRRS0JyOXouTlBDSGRBMXFHdE5QcExNLnlUTW5DZFY0TkUybk5lSyIsIm5hbWUiOiJIZWN0b3IgSGVycmVyYSJ9fQ.exEYFRcYFlHRApLujOcZto2aWxOIQ8IZyg0Tkg1pulk
+    responses: 
+      200:
+        body: 
+          application/json:
+            example:     
+              {
+                "Exito": "usuario eliminado exitosamente"
+              }

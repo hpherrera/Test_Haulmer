@@ -63,7 +63,7 @@ class ApiController extends Controller
             $client = new Client(['base_uri' => 'http://5bb26ef177063c0014a7d209.mockapi.io/api/v1/']);
             $response = $client->request('DELETE', 'users/'.$id);
 
-            return response()->json(['Error'=>'usuario eliminado exitosamente'],200,[]);
+            return response()->json(['Exito'=>'usuario eliminado exitosamente'],200,[]);
         }
         return response()->json(['Error'=>'Problemas al eliminar usuario'],401,[]);  
 
