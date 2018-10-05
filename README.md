@@ -10,7 +10,10 @@ Run y build imagen de docker
     
 ## Metodo de uso
 Utilizar postman u otra herramienta para comprobar:
-Ingresar http://localhost:8181/api/ENDPOINT
+
+Ingresar localhost:8181/api/{ENDPOINT}
+
+Los ENDPOINT se describen en la siguiente tabla.
 
 ### Luego de que el servicio este corriendo puede utilizar las siguientes rutas de la tabla:
 
